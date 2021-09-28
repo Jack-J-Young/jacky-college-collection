@@ -1,0 +1,6 @@
+X:\repos\CS264\tabconv\tabconv\bin\Debug\tabconv.exe.config
+X:\repos\CS264\tabconv\tabconv\bin\Debug\tabconv.exe
+X:\repos\CS264\tabconv\tabconv\bin\Debug\tabconv.pdb
+X:\repos\CS264\tabconv\tabconv\obj\Debug\tabconv.csprojResolveAssemblyReference.cache
+X:\repos\CS264\tabconv\tabconv\obj\Debug\tabconv.exe
+X:\repos\CS264\tabconv\tabconv\obj\Debug\tabconv.pdb
