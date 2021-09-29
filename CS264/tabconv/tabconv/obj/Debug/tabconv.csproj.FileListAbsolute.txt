@@ -4,3 +4,10 @@ X:\repos\CS264\tabconv\tabconv\bin\Debug\tabconv.pdb
 X:\repos\CS264\tabconv\tabconv\obj\Debug\tabconv.csprojResolveAssemblyReference.cache
 X:\repos\CS264\tabconv\tabconv\obj\Debug\tabconv.exe
 X:\repos\CS264\tabconv\tabconv\obj\Debug\tabconv.pdb
+C:\Users\jackj\Documents\Repos\jacky-college-collection\CS264\tabconv\tabconv\bin\Debug\tabconv.exe.config
+C:\Users\jackj\Documents\Repos\jacky-college-collection\CS264\tabconv\tabconv\bin\Debug\tabconv.exe
+C:\Users\jackj\Documents\Repos\jacky-college-collection\CS264\tabconv\tabconv\bin\Debug\tabconv.pdb
+C:\Users\jackj\Documents\Repos\jacky-college-collection\CS264\tabconv\tabconv\obj\Debug\tabconv.csproj.AssemblyReference.cache
+C:\Users\jackj\Documents\Repos\jacky-college-collection\CS264\tabconv\tabconv\obj\Debug\tabconv.csproj.CoreCompileInputs.cache
+C:\Users\jackj\Documents\Repos\jacky-college-collection\CS264\tabconv\tabconv\obj\Debug\tabconv.exe
+C:\Users\jackj\Documents\Repos\jacky-college-collection\CS264\tabconv\tabconv\obj\Debug\tabconv.pdb

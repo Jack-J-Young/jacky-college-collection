@@ -43,20 +43,73 @@ namespace tabconv
 
         public void GetHTML(string input)
         {
-            input = input.Replace("\t", "").Replace("\n", "");
-            int current = 0;
-            int start = input.IndexOf("<tr>");
-            int end = input.IndexOf("</tr>");
-            current = start;
-            while (current < end)
-            {
-                current = input.IndexOf("<td>", current);
-                string data = input.Substring(current, input.IndexOf("</td>", current) - 3);
-                current = input.IndexOf("</td>", current) + 2;
-                Console.WriteLine(data);
-                Console.WriteLine(current);
-            }
+            //TODO get array dimensions
 
+
+            // clear tabs and lines
+            input = input.Replace("\t", "").Replace("\n", "");
+            int rowCount = 0;
+            int i = 0;
+            
+            while (rowCount != -1)
+            {
+                int j = 0;
+                // get next row
+                rowCount = input.IndexOf("<tr>", rowCount);
+                if (rowCount == -1)
+                    break;
+                else
+                    rowCount++;
+
+                int colCount = rowCount;
+                // get end of row
+                int end = input.IndexOf("</tr>", rowCount);
+
+                while (colCount < end)
+                {
+                    // get data from each td tag
+                    colCount = input.IndexOf("<td>", colCount);
+                    if (colCount == -1 || colCount >= end)
+                        break;
+
+                    Console.WriteLine(); input.Substring(colCount + 4, input.IndexOf("</td>", colCount) - (colCount + 4))
+                    colCount = input.IndexOf("</td>", colCount);
+                    j++;
+                }
+                rowCount = end;
+                i++;
+            }
+        }
+
+        public void GetCSV(string input)
+        {
+            // clear tabs and lines
+            input = input.Replace("\t", "").Replace("\n", "");
+            int rowCount = 0;
+            while (rowCount != -1)
+            {
+                // get next row
+                rowCount = input.IndexOf("<tr>", rowCount);
+                if (rowCount == -1)
+                    break;
+                else
+                    rowCount++;
+
+                int colCount = rowCount;
+                // get end of row
+                int end = input.IndexOf("</tr>", rowCount);
+
+                while (colCount < end)
+                {
+                    // get data from each td tag
+                    colCount = input.IndexOf("<td>", colCount);
+                    if (colCount == -1 || colCount >= end)
+                        break;
+                    Console.WriteLine(input.Substring(colCount + 4, input.IndexOf("</td>", colCount) - (colCount + 4)));
+                    colCount = input.IndexOf("</td>", colCount);
+                }
+                rowCount = end;
+            }
         }
 
         // output in html format
