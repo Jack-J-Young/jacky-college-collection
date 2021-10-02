@@ -8,235 +8,74 @@ namespace tabconv
 {
     class Table
     {
-        public string[] heading;
-        public string[][] body;
+        protected List<KeyValuePair<string, List<object>>> data;
 
         public Table()
         {
+            data = new List<KeyValuePair<string, List<object>>>();
         }
 
-        public Table(string[] heading, string[][] body)
+        public List<KeyValuePair<string, List<object>>> GetData()
         {
-            this.heading = heading;
-            this.body = body;
+            return data;
         }
 
-
-        // override object's ToString for debugging
-        public override string ToString()
+        public void AddColumn(string name)
         {
-            string output = "";
-            for (int i = 0; i < heading.Length; i++)
-            {
-                output += heading[i] + (i == heading.Length - 1 ? "\n" : " | ");
-            }
-            output += new String('-', output.Length - 1) + "\n";
-            for (int i = 0; i < body.Length; i++)
-            {
-                for (int j = 0; j < body[i].Length; j++)
-                {
-                    output += body[i][j] + (j == body[i].Length - 1 ? "\n" : " | ");
-                }
-            }
-            return output;
+            data.Add(new KeyValuePair<string, List<object>>(name, new List <object>()));
         }
 
-        public void GetHTML(string input)
+        public void AddColumnData(string columnName, object value)
         {
-            //TODO get array dimensions
-
-
-            // clear tabs and lines
-            input = input.Replace("\t", "").Replace("\n", "");
-            int rowCount = 0;
-            int i = 0;
-            
-            while (rowCount != -1)
-            {
-                int j = 0;
-                // get next row
-                rowCount = input.IndexOf("<tr>", rowCount);
-                if (rowCount == -1)
-                    break;
-                else
-                    rowCount++;
-
-                int colCount = rowCount;
-                // get end of row
-                int end = input.IndexOf("</tr>", rowCount);
-
-                while (colCount < end)
-                {
-                    // get data from each td tag
-                    colCount = input.IndexOf("<td>", colCount);
-                    if (colCount == -1 || colCount >= end)
-                        break;
-
-                    Console.WriteLine(); input.Substring(colCount + 4, input.IndexOf("</td>", colCount) - (colCount + 4))
-                    colCount = input.IndexOf("</td>", colCount);
-                    j++;
-                }
-                rowCount = end;
-                i++;
-            }
+            KeyValuePair<string, List<object>> col = data.Where(kvp => kvp.Key == columnName).First();
+            col.Value.Add(value);
         }
 
-        public void GetCSV(string input)
+        public void AddColumnData(int colId, object value)
         {
-            // clear tabs and lines
-            input = input.Replace("\t", "").Replace("\n", "");
-            int rowCount = 0;
-            while (rowCount != -1)
-            {
-                // get next row
-                rowCount = input.IndexOf("<tr>", rowCount);
-                if (rowCount == -1)
-                    break;
-                else
-                    rowCount++;
-
-                int colCount = rowCount;
-                // get end of row
-                int end = input.IndexOf("</tr>", rowCount);
-
-                while (colCount < end)
-                {
-                    // get data from each td tag
-                    colCount = input.IndexOf("<td>", colCount);
-                    if (colCount == -1 || colCount >= end)
-                        break;
-                    Console.WriteLine(input.Substring(colCount + 4, input.IndexOf("</td>", colCount) - (colCount + 4)));
-                    colCount = input.IndexOf("</td>", colCount);
-                }
-                rowCount = end;
-            }
+            KeyValuePair<string, List<object>> col = data.ToArray()[colId];
+            col.Value.Add(value);
         }
 
-        // output in html format
-        public string SetHTML()
+        public KeyValuePair<string, List<object>>[] ToArray()
         {
-            // create the table tag
-            string output = "<table>\n";
-
-            // add the heading row
-            output += $"{t(1)}<tr>\n";
-            for (int i = 0; i < heading.Length; i++)
-            {
-                output += $"{t(2)}<td>{heading[i]}</td>\n";
-            }
-            output += $"{t(1)}</tr>\n";
-
-            // add td for each row in table
-            for (int i = 0; i < body.Length; i++)
-            {
-                output += $"{t(1)}<tr>\n";
-                // add data for each column
-                for (int j = 0; j < body[i].Length; j++)
-                {
-                    output += $"{t(2)}<td>{body[i][j]}</td>\n";
-                }
-                output += $"{t(1)}</tr>\n";
-            }
-
-            output += "</table>";
-            return output;
+            return data.ToArray();
         }
 
-        public string SetCSV()
+        public List<string> ToKeyList()
         {
-            string output = "";
-            // add header (ternary for commas and no commas on last column)
-            for(int i = 0; i < heading.Length;i++)
-            {
-                output += $"\"{heading[i]}\"{(i == heading.Length-1 ? '\n' : ',')}";
-            }
-            // same as header but for each row
-            for (int i = 0; i < body.Length; i++)
-            {
-                for (int j = 0; j < body[i].Length; j++)
-                {
-                    output += $"\"{body[i][j]}\"{(j == body[i].Length - 1 ? '\n' : ',')}";
-                }
-            }
-            return output;
+            List<string> keys = new List<string>();
+            data.ForEach(x => keys.Add(x.Key));
+            return keys;
         }
 
-        public string SetJSON()
+        public List<List<object>> ToValueList()
         {
-            // add outer []
-            string output = "[\n";
-
-            // add js object for each row
-            for(int i = 0; i < body.Length; i++)
-            {
-                output += $"{t(1)}{{\n";
-                // for each column interpolate the heading and the data
-                for (int j = 0; j < body[i].Length; j++)
-                {
-                    output += $"{t(2)}\"{heading[j]}\": \"{body[i][j]}\"{(j != body[i].Length-1 ? "," : "")}\n";
-                }
-                output += $"{t(1)}}}{(i != body.Length - 1 ? "," : "")}\n";
-            }
-
-            output += "]";
-            return output;
+            List<List<object>> values = new List<List<object>>();
+            data.ForEach(x => values.Add(x.Value));
+            return values;
         }
 
-        public string SetMD()
+        public List<object> ToRow(int row)
         {
-            string output = "";
-            string[][] preProcessedTable = new string[body.Length+1][];
-            int[] maxLengths = new int[heading.Length];
-            // add all table data to pre proc table
-            preProcessedTable[0] = new string[heading.Length];
-            for (int i = 0; i < body.Length; i++)
-            {
-                preProcessedTable[i + 1] = new string[body[i].Length];
-            }
-
-            // add the | before everything and find the largest bit of data in each column
-            for (int i = 0; i < preProcessedTable.Length; i++)
-            {
-                for (int j = 0; j < preProcessedTable[i].Length; j++)
-                {
-                    if (i == 0)
-                    {
-                        preProcessedTable[i][j] = "|" + heading[j];
-                    }
-                    else
-                    {
-                        preProcessedTable[i][j] = "|" + body[i-1][j];
-                    }
-                    if (preProcessedTable[i][j].Length > maxLengths[j])
-                        maxLengths[j] = preProcessedTable[i][j].Length;
-                }
-            }
-
-            // convert pre proc table to output string adding extra spaces to have all data in the column the same
-            for (int i = 0; i < preProcessedTable.Length; i++)
-            {
-                for (int j = 0; j < preProcessedTable[i].Length; j++)
-                {
-                    output += $"{preProcessedTable[i][j]}{new string(' ', maxLengths[j] - preProcessedTable[i][j].Length)}";
-                    
-                }
-                // add ---s for under header
-                if (i == 0)
-                {
-                    output += "|\n";
-                    for (int k = 0; k < maxLengths.Length; k++)
-                    {
-                        output += $"|{new string('-', maxLengths[k] - 1)}";
-                    }
-                }
-                output += "|\n";
-            }
-            return output;
+            if (row == 0)
+                return ToKeyList().ConvertAll(obj => (object)obj);
+            List<object> values = new List<object>();
+            data.ForEach(x => values.Add(x.Value[row - 1]));
+            return values;
         }
 
-        private string t(int i)
+        public List<List<object>> Rows { get
         {
-            return new string('\t', i);
-        }
+                List<List<object>> output = new List<List<object>>();
+                for (int i = 0; i < data.First().Value.Count; i++)
+                {
+                    output.Add(new List<object>());
+                    data.ForEach(x => output[i].Add(x.Value[i]));
+                }
+                return output;
+        } }
+        public int RowCount { get { return data.First().Value.Count; } }
+        public int Count { get { return data.Count; } }
     }
 }

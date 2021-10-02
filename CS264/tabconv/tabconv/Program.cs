@@ -10,13 +10,29 @@ namespace tabconv
     {
         static void Main(string[] args)
         {
-            Table t = new Table(new string[] { "h1", "h2" }, new string[][] { new string[] { "c1", "c2" } , new string[] { "c3", "c4" } });
-            Console.WriteLine(t.ToString());
-            Console.WriteLine(t.SetHTML());
-            Console.WriteLine(t.SetCSV());
-            Console.WriteLine(t.SetJSON());
-            Console.WriteLine(t.SetMD());
-            t.GetHTML(t.SetHTML());
+            Table t = new Table();
+            t.AddColumn("h1");
+            t.AddColumn("h2");
+            t.AddColumnData("h1", "c1");
+            t.AddColumnData("h2", "c2");
+            t.AddColumnData("h1", "c3");
+            t.AddColumnData("h2", "c4");
+
+            TableConverter tc = new TableConverter(t);
+            Console.WriteLine(tc.ToString());
+            Console.WriteLine(tc.GetHTML());
+            Console.WriteLine(tc.GetCSV());
+            Console.WriteLine(tc.GetJSON());
+            Console.WriteLine(tc.GetMD());
+            tc.SetHTML(tc.GetHTML());
+            Console.WriteLine(tc.GetHTML());
+            Console.WriteLine(tc.GetCSV());
+            tc.SetCSV(tc.GetCSV());
+            Console.WriteLine(tc.GetHTML());
+            Console.WriteLine(tc.GetCSV());
+            tc.SetJSON(tc.GetJSON());
+            Console.WriteLine(tc.GetHTML());
+            Console.WriteLine(tc.GetCSV());
             Console.ReadLine();
         }
     }
