@@ -94,9 +94,9 @@ namespace tabconv
             table = new Table();
             
             rowData[0].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList().ForEach(key => table.AddColumn(JsonDataToString(key)));
-            for (int i = 0; i < table.Count; i++)
+            for (int i = 1; i < table.Count; i++)
             {
-                var row = rowData[i + 1].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                var row = rowData[i].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 for (int j = 0; j < row.Length; j++)
                 {
                     table.AddColumnData(j, JsonDataToString(row[j]));
@@ -235,6 +235,88 @@ namespace tabconv
                 output += "|\n";
             });
 
+            return output;
+        }
+
+        public string GetText()
+        {
+            string output = "";
+
+            var data = table.GetData();
+            int[] colsSizes = new int[table.Count];
+            for (int i = 0; i < data.Count; i++)
+            {
+                int max = data[i].Key.Length;
+                data[i].Value.ForEach(y =>
+                {
+                    max = y.ToString().Length > max ? y.ToString().Length : max;
+                });
+                colsSizes[i] = max;
+            }
+
+            string line = "";
+            foreach (int i in colsSizes)
+                line += $"+{new string('-', i)}";
+            line += $"+\n";
+
+            output += line;
+            int count = 0;
+            table.ToKeyList().ForEach(key =>
+            {
+                output += $"|{key + new string(' ', colsSizes[count] - key.Length)}";
+                count++;
+            });
+            output += $"|\n{line}";
+
+            table.Rows.ForEach(row =>
+            {
+                count = 0;
+                row.ForEach(value =>
+                {
+                    output += $"|{value + new string(' ', colsSizes[count] - value.ToString().Length)}";
+                    count++;
+                });
+                output += $"|\n{line}";
+            });
+
+            return output;
+        }
+
+        public string GetLaTeX()
+        {
+            string output = "\\begin{table}[]\n\\begin{tabular}{|l|l|l|l|l|}\n\\hline\n";
+
+            var _data = table.GetData();
+            int[] colsSizes = new int[table.Count];
+            for (int i = 0; i < _data.Count; i++)
+            {
+                int max = _data[i].Key.Length;
+                _data[i].Value.ForEach(y =>
+                {
+                    max = y.ToString().Length > max ? y.ToString().Length : max;
+                });
+                colsSizes[i] = max;
+            }
+
+            int count = 0;
+            var keys = table.ToKeyList();
+            keys.ForEach(key =>
+            {
+                output += $"{key}{new string(' ', colsSizes[count] - key.Length)} {(key == keys.Last() ? "\\\\ \\hline\n" : "& ")}";
+                count++;
+            });
+
+            table.Rows.ForEach(row =>
+            {
+                count = 0;
+                row.ForEach(data =>
+                {
+                    output += $"{data}{new string(' ', colsSizes[count] - data.ToString().Length)} {(data == row.Last() ? "\\\\ \\hline\n" : "& ")}";
+                    count++;
+                });
+            });
+
+            output += "\\end{tabular}\n\\end{table}";
             return output;
         }
 

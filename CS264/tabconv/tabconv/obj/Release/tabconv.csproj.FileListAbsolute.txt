@@ -1,0 +1,6 @@
+X:\repos\jacky-college-collection\CS264\tabconv\tabconv\bin\Release\tabconv.exe.config
+X:\repos\jacky-college-collection\CS264\tabconv\tabconv\obj\Release\tabconv.csprojResolveAssemblyReference.cache
+X:\repos\jacky-college-collection\CS264\tabconv\tabconv\bin\Release\tabconv.exe
+X:\repos\jacky-college-collection\CS264\tabconv\tabconv\bin\Release\tabconv.pdb
+X:\repos\jacky-college-collection\CS264\tabconv\tabconv\obj\Release\tabconv.exe
+X:\repos\jacky-college-collection\CS264\tabconv\tabconv\obj\Release\tabconv.pdb

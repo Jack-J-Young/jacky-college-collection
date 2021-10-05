@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +12,16 @@ namespace tabconv
         static void Main(string[] args)
         {
             Table t = new Table();
-            t.AddColumn("h1");
-            t.AddColumn("h2");
-            t.AddColumnData("h1", "c1");
-            t.AddColumnData("h2", "c2");
-            t.AddColumnData("h1", "c3");
-            t.AddColumnData("h2", "c4");
+
+            t.AddColumn("h111");
+            t.AddColumn("h2aaaaaaaa");
+            t.AddColumn("3");
+            t.AddColumnData(0, "c1");
+            t.AddColumnData(1, "c2");
+            t.AddColumnData(2, "1");
+            t.AddColumnData(0, "cwww3");
+            t.AddColumnData(1, "cw4");
+            t.AddColumnData(2, "2");
 
             TableConverter tc = new TableConverter(t);
             Console.WriteLine(tc.ToString());
@@ -33,6 +38,8 @@ namespace tabconv
             tc.SetJSON(tc.GetJSON());
             Console.WriteLine(tc.GetHTML());
             Console.WriteLine(tc.GetCSV());
+            Console.WriteLine(tc.GetText());
+            Console.WriteLine(tc.GetLaTeX());
             Console.ReadLine();
         }
     }
