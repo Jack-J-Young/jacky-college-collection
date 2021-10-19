@@ -12,6 +12,7 @@ namespace svg_generator
 
         public Rectangle()
         {
+            Console.Clear();
             Console.Write("Input X: ");
             x = Int32.Parse(Console.ReadLine());
             Console.Write("Input Y: ");

@@ -12,13 +12,34 @@ namespace svg_generator
         {
             Canvas c = new Canvas();
 
-            c.AddShape(0);
+            char command = ' ';
+            while (command != 'q')
+            {
+                Console.Clear();
+                Console.WriteLine("h - help");
+                Console.WriteLine("a - Add new shape");
+                Console.WriteLine("e - Edit shapes");
+                Console.WriteLine("o - output");
+                command = Console.ReadKey().KeyChar;
+                Console.WriteLine();
 
-            c.AddShape(1);
-
-            c.AddShape(2);
-
-            c.AddShape(3);
+                switch (command)
+                {
+                    case 'h':
+                        Console.Clear();
+                        Console.WriteLine("Commands TODO");
+                        Console.WriteLine("press any key to exit help");
+                        Console.ReadKey();
+                        break;
+                    case 'a':
+                        c.AddShape();
+                        break;
+                    default:
+                        Console.Write("Press h for help or q to quit");
+                        break;
+                }
+            }
+            c.AddShape(5);
 
             c.GetSVG();
 

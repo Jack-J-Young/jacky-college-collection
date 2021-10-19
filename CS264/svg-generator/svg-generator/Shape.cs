@@ -8,7 +8,6 @@ namespace svg_generator
 {
     abstract class Shape
     {
-
         public abstract string GetTag();
     }
 }
