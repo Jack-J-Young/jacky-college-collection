@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace svg_generator
+namespace svg_generator.Shapes
 {
     class Polyline : Shape
     {
@@ -57,6 +57,7 @@ namespace svg_generator
 
         public void UpdatePoints()
         {
+            Console.Clear();
             points = new List<Point>();
             string input;
             do

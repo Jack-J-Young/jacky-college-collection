@@ -1,4 +1,5 @@
-﻿using System;
+﻿using svg_generator.Shapes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,14 +10,15 @@ namespace svg_generator
 {
     class Canvas
     {
-        private List<Shape> shapes;
+        // shapes list, index = z value
+        public List<Shape> shapes;
 
         public Canvas()
         {
             shapes = new List<Shape>();
         }
 
-        public void AddShape(int type)
+        private void AddShape(int type)
         {
             switch (type)
             {
@@ -39,14 +41,18 @@ namespace svg_generator
                     shapes.Add(new Polygon());
                     break;
                 case 6:
-                    shapes.Add(new Path());
+                    shapes.Add(new Shapes.Path());
+                    break;
+                case 7:
+                    shapes.Add(new Group(this));
                     break;
                 default:
                     break;
             }
         }
 
-        public Shape PickShape(string header)
+        // UI for picking a shape, used for editing and deleting
+        private Shape PickShape(string header)
         {
             int pageCount = shapes.Count / 10;
             int page = 0;
@@ -129,10 +135,12 @@ namespace svg_generator
             shapes.Remove(s);
         }
 
+        // ui for adding a shape
         public void AddShape()
         {
             Console.Clear();
             Console.WriteLine("Press key to create shape");
+            Console.WriteLine();
             Console.WriteLine("0 - Rectangle");
             Console.WriteLine("1 - Circle");
             Console.WriteLine("2 - Ellipse");
@@ -140,17 +148,19 @@ namespace svg_generator
             Console.WriteLine("4 - Polyline");
             Console.WriteLine("5 - Polygon");
             Console.WriteLine("6 - Path");
+            Console.WriteLine("7 - Group");
             Console.WriteLine();
-            Console.WriteLine("q - quit");
+            Console.WriteLine("c - quit");
             char input = Console.ReadKey().KeyChar;
-            if (input == 'q')
+            if (input == 'c')
                 return;
-            if ((int)input >= 48 && (int)input <= 54)
+            if ((int)input >= 48 && (int)input <= 55)
                 AddShape(input - 48);
             else
                 AddShape();
         }
 
+        // UI for editing z values
         public void EditZ()
         {
             int index = 0;
@@ -162,34 +172,24 @@ namespace svg_generator
                 Console.WriteLine(index == shapes.Count - 1 ? "" : "s - move selection down");
                 Console.WriteLine("Hold Shift to drag selected shape with selection");
                 Console.WriteLine();
+                Console.WriteLine("c - cancel");
+                Console.WriteLine();
 
-                bool ended = false;
                 for (int i = 0; i < shapes.Count; i++)
                 {
-                    try
-                    {
-                        Shape s = shapes[i];
-                        // Get key to press + shapes class name
+                    Shape s = shapes[i];
+                    // Get key to press + shapes class name
 
-                        if (i == index)
-                        {
-                            Console.BackgroundColor = ConsoleColor.White;
-                            Console.ForegroundColor = ConsoleColor.Black;
-                        }
-
-                        Console.WriteLine($"{i} - {$"{s.GetType()}".Split('.').Last()}");
-
-                        Console.BackgroundColor = ConsoleColor.Black;
-                        Console.ForegroundColor = ConsoleColor.White;
-                    }
-                    catch (ArgumentOutOfRangeException)
+                    if (i == index)
                     {
-                        ended = true;
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Black;
                     }
-                    if (ended)
-                    {
-                        Console.WriteLine("  -");
-                    }
+
+                    Console.WriteLine($"{i} - {$"{s.GetType()}".Split('.').Last()}");
+
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
 
                 char command = Console.ReadKey().KeyChar;
@@ -198,19 +198,19 @@ namespace svg_generator
                 switch (command)
                 {
                     case 'w':
-                        if (index != 0)
+                        if (index > 0)
                         {
                             index--;
                         }
                         break;
                     case 's':
-                        if(index != shapes.Count - 1)
+                        if(index < shapes.Count - 1)
                         {
                             index++;
                         }
                         break;
                     case 'W':
-                        if (index != 0)
+                        if (index > 0)
                         {
                             temp = shapes[index];
                             shapes[index] = shapes[index - 1];
@@ -219,15 +219,17 @@ namespace svg_generator
                         }
                         break;
                     case 'S':
-                        if (index != shapes.Count-1)
+                        if (index < shapes.Count - 1)
                         {
                             temp = shapes[index];
                             shapes[index] = shapes[index + 1];
                             shapes[index + 1] = temp;
                             index++;
                         }
-                        
+
                         break;
+                    case 'c':
+                        return;
                     default:
                         break;
                 }

@@ -10,11 +10,13 @@ namespace svg_generator
     {
         static void Main(string[] args)
         {
+            // create new canvas
             Canvas c = new Canvas();
 
             char command = ' ';
             while (command != 'q')
             {
+                // print ui
                 Console.Clear();
                 Console.WriteLine("Console SVG editor");
                 Console.WriteLine();
@@ -29,14 +31,9 @@ namespace svg_generator
                 command = Console.ReadKey().KeyChar;
                 Console.WriteLine();
 
+                // commands
                 switch (command)
                 {
-                    case 'h':
-                        Console.Clear();
-                        Console.WriteLine("Commands TODO");
-                        Console.WriteLine("press any key to exit help");
-                        Console.ReadKey();
-                        break;
                     case 'a':
                         c.AddShape();
                         break;
@@ -58,11 +55,6 @@ namespace svg_generator
                         break;
                 }
             }
-            c.AddShape(5);
-
-            c.GetSVG();
-
-            Console.ReadKey();
         }
     }
 }

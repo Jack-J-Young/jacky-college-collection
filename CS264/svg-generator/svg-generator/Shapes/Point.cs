@@ -8,6 +8,7 @@ namespace svg_generator.Shapes
 {
     class Point
     {
+        // stores coordinates and a point type (only used for path)
         public string type;
         public int x, y;
         public Point()

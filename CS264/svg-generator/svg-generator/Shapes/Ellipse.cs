@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace svg_generator
+namespace svg_generator.Shapes
 {
     class Ellipse : Shape
     {
