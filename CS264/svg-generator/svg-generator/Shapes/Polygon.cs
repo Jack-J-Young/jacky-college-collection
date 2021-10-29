@@ -14,6 +14,53 @@ namespace svg_generator
 
         public Polygon()
         {
+            UpdateValues();
+        }
+
+        public override void UpdateValues()
+        {
+            UpdatePoints();
+        }
+
+        public override void UpdateWithUI()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("0 - edit point");
+                Console.WriteLine("1 - edit fill");
+                Console.WriteLine("2 - edit stroke");
+                Console.WriteLine("3 - edit stroke width");
+                Console.WriteLine();
+                Console.WriteLine("c - cancel");
+                Console.WriteLine();
+
+                char command = Console.ReadKey().KeyChar;
+
+                switch (command)
+                {
+                    case '0':
+                        UpdatePoints();
+                        break;
+                    case '1':
+                        UpdateFill();
+                        break;
+                    case '2':
+                        UpdateStroke();
+                        break;
+                    case '3':
+                        UpdateStroke();
+                        break;
+                    case 'c':
+                        return;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        public void UpdatePoints()
+        {
             points = new List<Point>();
             string input;
             do
@@ -53,7 +100,7 @@ namespace svg_generator
                     }
                 }
                 points.Add(p);
-            }while (input != "q");
+            } while (input != "q");
         }
 
         public override string GetTag()
@@ -61,7 +108,7 @@ namespace svg_generator
             String output = "";
             for (int i = 0; i < points.Count; i++)
                 output += $"{points[i].ToPoint()} ";
-            return $"<polygon points=\"{output}\" />";
+            return $"<polygon points=\"{output}\" stroke=\"#{stroke}\" fill=\"#{fill}\" stroke-width={stroke_width}px />";
         }
     }
 }

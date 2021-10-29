@@ -14,6 +14,49 @@ namespace svg_generator
 
         public Polyline()
         {
+            UpdateValues();
+        }
+
+        public override void UpdateValues()
+        {
+            UpdatePoints();
+        }
+
+        public override void UpdateWithUI()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("0 - edit point");
+                Console.WriteLine("1 - edit stroke");
+                Console.WriteLine("2 - edit stroke width");
+                Console.WriteLine();
+                Console.WriteLine("c - cancel");
+                Console.WriteLine();
+
+                char command = Console.ReadKey().KeyChar;
+
+                switch (command)
+                {
+                    case '0':
+                        UpdatePoints();
+                        break;
+                    case '1':
+                        UpdateStroke();
+                        break;
+                    case '2':
+                        UpdateStroke();
+                        break;
+                    case 'c':
+                        return;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        public void UpdatePoints()
+        {
             points = new List<Point>();
             string input;
             do
@@ -61,7 +104,7 @@ namespace svg_generator
             String output = "";
             for (int i = 0; i < points.Count; i++)
                 output += $"{points[i].ToPoint()} ";
-            return $"<polyline points=\"{output}\" />";
+            return $"<polyline points=\"{output}\" stroke=\"#{stroke}\" stroke-width={stroke_width}px />";
         }
     }
 }

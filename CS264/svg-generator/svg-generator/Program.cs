@@ -16,10 +16,16 @@ namespace svg_generator
             while (command != 'q')
             {
                 Console.Clear();
-                Console.WriteLine("h - help");
+                Console.WriteLine("Console SVG editor");
+                Console.WriteLine();
                 Console.WriteLine("a - Add new shape");
                 Console.WriteLine("e - Edit shapes");
+                Console.WriteLine("d - delete shapes");
+                Console.WriteLine("z - edit layers");
                 Console.WriteLine("o - output");
+                Console.WriteLine();
+                Console.WriteLine("q - quit");
+
                 command = Console.ReadKey().KeyChar;
                 Console.WriteLine();
 
@@ -34,8 +40,21 @@ namespace svg_generator
                     case 'a':
                         c.AddShape();
                         break;
+                    case 'e':
+                        c.EditShape();
+                        break;
+                    case 'd':
+                        c.DeleteShape();
+                        break;
+                    case 'z':
+                        c.EditZ();
+                        break;
+                    case 'o':
+                        c.GetSVG();
+                        break;
+                    case 'q':
+                        return;
                     default:
-                        Console.Write("Press h for help or q to quit");
                         break;
                 }
             }
