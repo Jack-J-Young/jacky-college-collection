@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ZwiHbmXhVXQzZMhBa0DhD7KacQht/36E/YamxXDEzvgW3q+F4DFxCPcaGajCH2IMneedX4+t0WlUMmVE0gi7Rg==",
+  "success": true,
+  "projectFilePath": "/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/svg-generator-port.csproj",
+  "expectedPackageFiles": [
+    "/home/oct/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

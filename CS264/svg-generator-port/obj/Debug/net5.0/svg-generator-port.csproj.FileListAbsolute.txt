@@ -1,0 +1,16 @@
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/bin/Debug/net5.0/svg-generator-port
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/bin/Debug/net5.0/svg-generator-port.deps.json
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/bin/Debug/net5.0/svg-generator-port.runtimeconfig.json
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/bin/Debug/net5.0/svg-generator-port.runtimeconfig.dev.json
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/bin/Debug/net5.0/svg-generator-port.dll
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/bin/Debug/net5.0/ref/svg-generator-port.dll
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/bin/Debug/net5.0/svg-generator-port.pdb
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/obj/Debug/net5.0/svg-generator-port.csprojAssemblyReference.cache
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/obj/Debug/net5.0/svg-generator-port.GeneratedMSBuildEditorConfig.editorconfig
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/obj/Debug/net5.0/svg-generator-port.AssemblyInfoInputs.cache
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/obj/Debug/net5.0/svg-generator-port.AssemblyInfo.cs
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/obj/Debug/net5.0/svg-generator-port.csproj.CoreCompileInputs.cache
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/obj/Debug/net5.0/svg-generator-port.dll
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/obj/Debug/net5.0/ref/svg-generator-port.dll
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/obj/Debug/net5.0/svg-generator-port.pdb
+/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/obj/Debug/net5.0/svg-generator-port.genruntimeconfig.cache

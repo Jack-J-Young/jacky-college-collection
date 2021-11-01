@@ -1,0 +1,66 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/svg-generator-port.csproj": {}
+  },
+  "projects": {
+    "/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/svg-generator-port.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/svg-generator-port.csproj",
+        "projectName": "svg-generator-port",
+        "projectPath": "/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/svg-generator-port.csproj",
+        "packagesPath": "/home/oct/.nuget/packages/",
+        "outputPath": "/home/oct/repos/jacky-college-collection/CS264/svg-generator-port/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/oct/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.205/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
