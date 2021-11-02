@@ -1,0 +1,13 @@
+X:\repos\jacky-college-collection\CS264\svg-generator\svg-generator\bin\Debug\svg-generator.exe.config
+X:\repos\jacky-college-collection\CS264\svg-generator\svg-generator\obj\Debug\svg-generator.csprojResolveAssemblyReference.cache
+X:\repos\jacky-college-collection\CS264\svg-generator\svg-generator\bin\Debug\svg-generator.exe
+X:\repos\jacky-college-collection\CS264\svg-generator\svg-generator\bin\Debug\svg-generator.pdb
+X:\repos\jacky-college-collection\CS264\svg-generator\svg-generator\obj\Debug\svg-generator.exe
+X:\repos\jacky-college-collection\CS264\svg-generator\svg-generator\obj\Debug\svg-generator.pdb
+C:\Users\jackj\Documents\Repos\jacky-college-collection\CS264\svg-generator\svg-generator\bin\Debug\svg-generator.exe.config
+C:\Users\jackj\Documents\Repos\jacky-college-collection\CS264\svg-generator\svg-generator\bin\Debug\svg-generator.exe
+C:\Users\jackj\Documents\Repos\jacky-college-collection\CS264\svg-generator\svg-generator\bin\Debug\svg-generator.pdb
+C:\Users\jackj\Documents\Repos\jacky-college-collection\CS264\svg-generator\svg-generator\obj\Debug\svg-generator.csproj.AssemblyReference.cache
+C:\Users\jackj\Documents\Repos\jacky-college-collection\CS264\svg-generator\svg-generator\obj\Debug\svg-generator.csproj.CoreCompileInputs.cache
+C:\Users\jackj\Documents\Repos\jacky-college-collection\CS264\svg-generator\svg-generator\obj\Debug\svg-generator.exe
+C:\Users\jackj\Documents\Repos\jacky-college-collection\CS264\svg-generator\svg-generator\obj\Debug\svg-generator.pdb
