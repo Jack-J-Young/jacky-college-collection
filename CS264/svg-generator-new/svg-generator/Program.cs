@@ -13,45 +13,50 @@ namespace svg_generator
             // create new canvas
             Canvas c = new Canvas();
 
-            char command = ' ';
-            while (command != 'q')
+            string[] command = new string[]{"h"};
+            Console.WriteLine("Enter command (h for help):");
+            while (command[0] != "q")
             {
-                // print ui
-                Console.Clear();
-                Console.WriteLine("Console SVG editor");
-                Console.WriteLine();
-                Console.WriteLine("a - Add new shape");
-                Console.WriteLine("e - Edit shapes");
-                Console.WriteLine("d - delete shapes");
-                Console.WriteLine("z - edit layers");
-                Console.WriteLine("o - output");
-                Console.WriteLine();
-                Console.WriteLine("q - quit");
-
-                command = Console.ReadKey().KeyChar;
-                Console.WriteLine();
+                Console.Write("> ");
+                command = Console.ReadLine().Split(' ');
 
                 // commands
-                switch (command)
+                switch (command[0])
                 {
-                    case 'a':
-                        c.AddShape();
+                    case "h":
+                        Console.WriteLine("Commands:");
+                        Console.WriteLine();
+                        Console.WriteLine("h         - help");
+                        Console.WriteLine("a <shape> - Add new shape");
+                        Console.WriteLine("u         - undo");
+                        Console.WriteLine("r         - redo");
+                        Console.WriteLine("c         - clear");
+                        Console.WriteLine();
+                        Console.WriteLine("q         - quit");
                         break;
-                    case 'e':
-                        c.EditShape();
+                    case "a":
+                        try
+                        {
+                            if (c.AddShape(command[1]))
+                                Console.WriteLine($"Added a {command[1].ToLower()} to the canvas");
+                        }
+                        catch(Exception)
+                        {
+                            Console.WriteLine("No shape given");
+                        }
                         break;
-                    case 'd':
-                        c.DeleteShape();
+                    case "u":
                         break;
-                    case 'z':
-                        c.EditZ();
+                    case "r":
                         break;
-                    case 'o':
-                        c.GetSVG();
+                    case "c":
+                        c.clear();
+                        Console.WriteLine("Canvas cleared");
                         break;
-                    case 'q':
+                    case "q":
                         return;
                     default:
+                        Console.WriteLine("unknown command, type h for help");
                         break;
                 }
             }

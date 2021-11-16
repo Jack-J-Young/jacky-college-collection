@@ -17,79 +17,31 @@ namespace svg_generator.Shapes
 
         public override void UpdateValues()
         {
-            UpdateCX();
-            UpdateCY();
-            UpdateRX();
-            UpdateRY();
+            Random rand = new Random();
+            UpdateCX(rand.Next(0, 500));
+            UpdateCY(rand.Next(0, 500));
+            UpdateRX(rand.Next(2, 50));
+            UpdateRY(rand.Next(2, 50));
         }
 
-        public override void UpdateWithUI()
+        public void UpdateCX(int cx)
         {
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("0 - edit cx");
-                Console.WriteLine("1 - edit cy");
-                Console.WriteLine("2 - edit rx");
-                Console.WriteLine("3 - edit ry");
-                Console.WriteLine("4 - edit fill");
-                Console.WriteLine("5 - edit stroke");
-                Console.WriteLine("6 - edit stroke width");
-                Console.WriteLine();
-                Console.WriteLine("c - cancel");
-                Console.WriteLine();
-
-                char command = Console.ReadKey().KeyChar;
-
-                switch (command)
-                {
-                    case '0':
-                        UpdateCX();
-                        break;
-                    case '1':
-                        UpdateCY();
-                        break;
-                    case '2':
-                        UpdateRX();
-                        break;
-                    case '3':
-                        UpdateRY();
-                        break;
-                    case '4':
-                        UpdateFill();
-                        break;
-                    case '5':
-                        UpdateStroke();
-                        break;
-                    case '6':
-                        UpdateStroke();
-                        break;
-                    case 'c':
-                        return;
-                    default:
-                        break;
-                }
-            }
+            this.cx = cx;
         }
 
-        public void UpdateCX()
+        public void UpdateCY(int cy)
         {
-            cx = (int)UserInput("Input X: ", 0);
+            this.cy = cy;
         }
 
-        public void UpdateCY()
+        public void UpdateRX(int rx)
         {
-            cy = (int)UserInput("Input Y: ", 0);
+            this.rx = rx;
         }
 
-        public void UpdateRX()
+        public void UpdateRY(int ry)
         {
-            rx = (int)UserInput("Input Rx: ", 0);
-        }
-
-        public void UpdateRY()
-        {
-            ry = (int)UserInput("Input Ry: ", 0);
+            this.ry = ry;
         }
 
         public override string GetTag()

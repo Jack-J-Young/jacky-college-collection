@@ -17,69 +17,25 @@ namespace svg_generator.Shapes
 
         public override void UpdateValues()
         {
-            UpdateCX();
-            UpdateCY();
-            UpdateR();
+            Random rand = new Random();
+            UpdateCX(rand.Next(0, 500));
+            UpdateCY(rand.Next(0, 500));
+            UpdateR(rand.Next(2, 50));
         }
 
-        public override void UpdateWithUI()
+        public void UpdateCX(int cx)
         {
-            while(true)
-            {
-                Console.Clear();
-                Console.WriteLine("0 - edit cx");
-                Console.WriteLine("1 - edit cy");
-                Console.WriteLine("2 - edit r");
-                Console.WriteLine("3 - edit fill");
-                Console.WriteLine("4 - edit stroke");
-                Console.WriteLine("5 - edit stroke width");
-                Console.WriteLine();
-                Console.WriteLine("c - cancel");
-                Console.WriteLine();
-
-                char command = Console.ReadKey().KeyChar;
-
-                switch (command)
-                {
-                    case '0':
-                        UpdateCX();
-                        break;
-                    case '1':
-                        UpdateCY();
-                        break;
-                    case '2':
-                        UpdateR();
-                        break;
-                    case '3':
-                        UpdateFill();
-                        break;
-                    case '4':
-                        UpdateStroke();
-                        break;
-                    case '5':
-                        UpdateStroke();
-                        break;
-                    case 'c':
-                        return;
-                    default:
-                        break;
-                }
-            }
+            this.cx = cx;
         }
 
-        public void UpdateCX()
+        public void UpdateCY(int cy)
         {
-            cx = (int)UserInput("Input X: ", 0);
+            this.cy = cy;
         }
 
-        public void UpdateCY()
+        public void UpdateR(int r)
         {
-            cy = (int)UserInput("Input Y: ", 0);
-        }
-
-        public void UpdateR()
-        {
-            r = (int)UserInput("Input Radius: ", 0);
+            this.r = r;
         }
 
         public override string GetTag()

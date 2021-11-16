@@ -1,0 +1,6 @@
+( declare-fun a () Bool )
+( declare-fun b () Bool )
+( declare-fun c () Bool )
+( assert (=> (not (and a b )) c ))
+( check-sat )
+(get-model)

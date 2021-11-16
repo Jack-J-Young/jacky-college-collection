@@ -25,79 +25,31 @@ namespace svg_generator.Shapes
 
         public override void UpdateValues()
         {
-            UpdateX();
-            UpdateY();
-            UpdateWidth();
-            UpdateHeight();
+            Random rand = new Random();
+            UpdateX(rand.Next(0, 500));
+            UpdateY(rand.Next(0, 500));
+            UpdateWidth(rand.Next(2, 50));
+            UpdateHeight(rand.Next(2, 50));
         }
 
-        public override void UpdateWithUI()
+        public void UpdateX(int x)
         {
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("0 - edit x");
-                Console.WriteLine("1 - edit y");
-                Console.WriteLine("2 - edit width");
-                Console.WriteLine("3 - edit height");
-                Console.WriteLine("4 - edit fill");
-                Console.WriteLine("5 - edit stroke");
-                Console.WriteLine("6 - edit stroke width");
-                Console.WriteLine();
-                Console.WriteLine("c - cancel");
-                Console.WriteLine();
-
-                char command = Console.ReadKey().KeyChar;
-
-                switch (command)
-                {
-                    case '0':
-                        UpdateX();
-                        break;
-                    case '1':
-                        UpdateY();
-                        break;
-                    case '2':
-                        UpdateWidth();
-                        break;
-                    case '3':
-                        UpdateHeight();
-                        break;
-                    case '4':
-                        UpdateFill();
-                        break;
-                    case '5':
-                        UpdateStroke();
-                        break;
-                    case '6':
-                        UpdateStroke();
-                        break;
-                    case 'c':
-                        return;
-                    default:
-                        break;
-                }
-            }
+            this.x = x;
         }
 
-        public void UpdateX()
+        public void UpdateY(int y)
         {
-            x = (int)UserInput("Input X: ", 0);
+            this.y = y;
         }
 
-        public void UpdateY()
+        public void UpdateWidth(int width)
         {
-            y = (int)UserInput("Input Y: ", 0);
+            this.width = width;
         }
 
-        public void UpdateWidth()
+        public void UpdateHeight(int height)
         {
-            width = (int)UserInput("Input width: ", 0);
-        }
-
-        public void UpdateHeight()
-        {
-            height = (int)UserInput("Input height: ", 0);
+            this.height = height;
         }
 
         public override string GetTag()

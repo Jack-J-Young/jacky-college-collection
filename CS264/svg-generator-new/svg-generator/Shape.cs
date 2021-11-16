@@ -18,53 +18,36 @@ namespace svg_generator
         // ui update calsses for creating and edititing shapes (each shape also has updates for unique variables
         public void UpdateFill()
         {
-            fill = (string)UserInput("Input Fill (Hexadecimal): ", 1);
+            fill = RandomColour();
         }
 
         public void UpdateStroke()
         {
-            stroke = (string)UserInput("Input Stroke (Hexadecimal): ", 1);
+            Random rand = new Random();
+            stroke = RandomColour();
         }
 
         public void StrokeWidth()
         {
-            stroke_width = (int)UserInput("Input X: ", 0);
+            Random rand = new Random();
+            stroke_width = rand.Next(0,4);
         }
 
         // static method for forcing a valid user input for different value types
-        public static object UserInput(string message, int type)
+        private static string RandomColour()
         {
-            // look until a return from a valid input
-            while (true)
+            Random rand = new Random();
+            string output = "";
+            for (int i = 0; i < 6; i++)
             {
-                try
-                {
-                    Console.Clear();
-                    Console.Write(message);
-
-                    switch (type)
-                    {
-                        // int
-                        case 0:
-                            return Int32.Parse(Console.ReadLine());
-                        // hexadecial as string
-                        case 1:
-                            string i = Console.ReadLine().ToUpper();
-                            Regex r = new Regex("[0-9A-F]{6}");
-                            if (r.IsMatch(i))
-                                return i;
-                            break;
-                        default:
-                            return null;
-                    }
-                }
-                catch (Exception) { }
+                int next = rand.Next(0, 16);
+                output += (next < 10) ? next + "" : ((char)(next + 87)) + "";
             }
+            return output;
         }
 
         // abstract methods for use in canvas object
         public abstract void UpdateValues();
-        public abstract void UpdateWithUI();
         public abstract string GetTag();
     }
 }
