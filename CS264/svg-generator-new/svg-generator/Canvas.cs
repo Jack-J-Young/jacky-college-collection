@@ -12,63 +12,78 @@ namespace svg_generator
     {
         // shapes list, index = z value
         public List<Shape> shapes;
+        private readonly Originator camera;
+
+        private readonly Caretaker undo;
+        private readonly Caretaker redo;
 
         public Canvas()
         {
             shapes = new List<Shape>();
+            camera = new Originator(shapes);
+
+            undo = new Caretaker();
+            redo = new Caretaker();
         }
 
         public bool AddShape(string inp)
         {
+            Shape shape;
+            
             switch (inp.ToLower())
             {
                 case "rectangle":
-                    shapes.Add(new Rectangle());
-                    return true;
+                    shape = new Rectangle();
+                    break;
                 case "circle":
-                    shapes.Add(new Circle());
-                    return true;
+                    shape = new Circle();
+                    break;
                 case "ellipse":
-                    shapes.Add(new Ellipse());
-                    return true;
+                    shape = new Ellipse();
+                    break;
                 case "line":
-                    shapes.Add(new Line());
-                    return true;
+                    shape = new Line();
+                    break;
                 default:
                     Console.WriteLine("Invalid shape");
                     return false;
             }
-        }
 
-        private void AddShape(int type)
-        {
-            switch (type)
-            {
-                case 0:
-                    shapes.Add(new Rectangle());
-                    break;
-                case 1:
-                    shapes.Add(new Circle());
-                    break;
-                case 2:
-                    shapes.Add(new Ellipse());
-                    break;
-                case 3:
-                    shapes.Add(new Line());
-                    break;
-                default:
-                    break;
-            }
+            undo.Push(camera.SaveStateToMomento());
+            redo.Clear();
+            shapes.Add(shape);
+            return true;
         }
 
         public void clear()
         {
+            undo.Push(camera.SaveStateToMomento());
+            redo.Clear();
             shapes = new List<Shape>();
+        }
+
+        public void Undo()
+        {
+            List<Shape> snap = undo.Pop().GetState();
+            Momento pre = camera.SaveStateToMomento();
+
+            shapes = snap;
+            camera.SetState(snap);
+            redo.Push(pre);
+        }
+
+        public void Redo()
+        {
+            List<Shape> snap = redo.Pop().GetState();
+
+            undo.Push(camera.SaveStateToMomento());
+            shapes = snap;
+            camera.SetState(snap);
         }
 
         public void GetSVG()
         {
-            Console.Clear();
+            Console.WriteLine();
             string output = "<svg>\n";
             foreach (Shape s in shapes)
                 output += $"{s.GetTag()}\n";
@@ -79,8 +94,10 @@ namespace svg_generator
             File.WriteAllText("output.svg", output);
 
             Console.WriteLine();
-            Console.WriteLine("File saved as output.svg");
-            Console.WriteLine("Press any key to continue...");
+
+            Console.WriteLine("File saved to output.svg");
+
+            Console.WriteLine();
             Console.ReadKey();
         }
     }

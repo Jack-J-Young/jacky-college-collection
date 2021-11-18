@@ -104,8 +104,12 @@ namespace svg_generator.Shapes
                             {
                                 if (first == null)
                                     first = temp_shapes[i];
-                                shapes.Add(temp_shapes[i]);
-                                canvasRef.shapes.Remove(temp_shapes[i]);
+                                if (!shapes.Contains(temp_shapes[i]))
+                                {
+                                    shapes.Add(temp_shapes[i]);
+                                    canvasRef.shapes.Remove(temp_shapes[i]);
+                                }
+                                
                             } 
                             else
                             {

@@ -46,7 +46,7 @@ namespace svg_generator.Shapes
 
         public override string GetTag()
         {
-            return $"<line x1=\"{x1}\" y1=\"{y1}\" x2=\"{x2}\" y2=\"{y2}\" stroke=\"#{stroke}\" stroke-width={stroke_width}px />";
+            return $"<line x1=\"{x1}\" y1=\"{y1}\" x2=\"{x2}\" y2=\"{y2}\" stroke=\"#{stroke}\" stroke-width=\"{stroke_width}\" />";
         }
     }
 }

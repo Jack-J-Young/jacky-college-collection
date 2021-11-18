@@ -54,7 +54,7 @@ namespace svg_generator.Shapes
 
         public override string GetTag()
         {
-            return $"<rect x=\"{x}\" y=\"{y}\" width=\"{width}\" height=\"{height}\" rx=\"{0}\" ry=\"{0}\" stroke=\"#{stroke}\" fill=\"#{fill}\" stroke-width={stroke_width}px />";
+            return $"<rect x=\"{x}\" y=\"{y}\" width=\"{width}\" height=\"{height}\" rx=\"{0}\" ry=\"{0}\" stroke=\"#{stroke}\" fill=\"#{fill}\" stroke-width=\"{stroke_width}\" />";
         }
     }
 }

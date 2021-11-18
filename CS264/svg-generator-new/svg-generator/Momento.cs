@@ -8,11 +8,16 @@ namespace svg_generator
 {
     class Momento
     {
-        public List<Shape> state;
+        private readonly List<Shape> state;
 
         public Momento (List<Shape> state)
         {
             this.state = state;
+        }
+
+        public List<Shape> GetState()
+        {
+            return state;
         }
     }
 }
