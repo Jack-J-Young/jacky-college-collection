@@ -31,6 +31,7 @@ namespace svg_generator
                         Console.WriteLine("u         - undo");
                         Console.WriteLine("r         - redo");
                         Console.WriteLine("c         - clear");
+                        Console.WriteLine("o         - output svg to console");
                         Console.WriteLine();
                         Console.WriteLine("q         - quit");
                         break;
@@ -46,12 +47,17 @@ namespace svg_generator
                         }
                         break;
                     case "u":
+                        c.Undo();
                         break;
                     case "r":
+                        c.Redo();
                         break;
                     case "c":
                         c.clear();
                         Console.WriteLine("Canvas cleared");
+                        break;
+                    case "o":
+                        c.GetSVG();
                         break;
                     case "q":
                         return;

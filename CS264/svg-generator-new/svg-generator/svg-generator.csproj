@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Canvas.cs" />
+    <Compile Include="Caretaker.cs" />
     <Compile Include="Momento.cs" />
+    <Compile Include="Originator.cs" />
     <Compile Include="Shapes\Ellipse.cs" />
     <Compile Include="Shapes\Circle.cs" />
     <Compile Include="Program.cs" />

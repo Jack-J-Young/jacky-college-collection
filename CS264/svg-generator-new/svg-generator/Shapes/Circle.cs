@@ -40,7 +40,7 @@ namespace svg_generator.Shapes
 
         public override string GetTag()
         {
-            return $"<circle cx=\"{cx}\" cy=\"{cy}\" r=\"{r}\" stroke=\"#{stroke}\" fill=\"#{fill}\" stroke-width={stroke_width}px />";
+            return $"<circle cx=\"{cx}\" cy=\"{cy}\" r=\"{r}\" stroke=\"#{stroke}\" fill=\"#{fill}\" stroke-width=\"{stroke_width}\" />";
         }
     }
 }
